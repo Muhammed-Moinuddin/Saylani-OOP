@@ -1,64 +1,3 @@
-class PersonAccount {
-    constructor( income, incomeDescription) {
-      this.income = income;
-      this.incomeDescription = incomeDescription;
-    //   this.totalIncome(income);
-    //   this.totalExpense(expense);
-    //   this.addIncome(income);
-    //   this.addExpense(expense);
-    //   this.accountBalance(income,expense);
-    }
-
-  }
-  class Incomes {
-        constructor(){
-          this.incomes = []
-        }
-        // create a new player and save it in the collection
-        newIncome(income, incomeDescription){
-          let p = new Incomes(income, incomeDescription)
-          this.incomes.push(p)
-          return p
-        }
-        get allIncomes(){
-                return this.incomes;
-         }
-}
-let check = new Incomes();
-check.newIncome("1000","1 Description");
-console.log(check.allIncomes)
-// class Incomes {
-//     constructor(){
-//       this.incomes = []
-//     }
-//     // create a new player and save it in the collection
-//     newIncome(income){
-//       let i = new PersonAccount(income)
-//       this.income.push(i)
-//       return i
-//     }
-//     get allIncomes(){
-//         return this.incomes
-//       }
-// }
-// let person1 = new Incomes();
-// person1.newIncome(1000);
-// console.log(league.allIncomes)
-
-
-
-//   let personOne = new PersonAccount("Moin", "Uddin", [{"income":"3000","description":"This is 1 description"},{"income":"2000","description":"This is 2 description"}], [{"expenses":"1000","description":"This is 1 description"},{"expenses":"1200","description":"This is 2 description"}]);
-//   document.getElementById("answer").innerHTML =
-//   "My account is " + personOne.firstName +  personOne.expenses[0];
-
-// class PersonAccount{
-//     firstName = "Moin";
-//     lastName = "uddin";
-//     incomes = [{income: 100, description: "This is 1 Income"}, {income: 200, description: "This is 2 Income"}];
-//     expenses = [{expense: 100, description: "This is 1 Income"}, {expense: 200, description: "This is 2 Income"}];
-// }
-// document.getElementById("answer").innerHTML = PersonAccount.incomes;
-
 //Question 2
 class Automobile {
     constructor (name, model, type) {
@@ -102,3 +41,83 @@ document.getElementById("truck").innerHTML = "My Truck description is " + truck1
 
 const bus1 = new Bus("Tata", 2011, " manual type", "School");
 document.getElementById("bus").innerHTML = "My Bus description is " + bus1.name + " of " + bus1.model + bus1.type + " used for " + bus1.usedfor + " purposes." ;
+
+
+
+class PersonAccountForIncome {
+  constructor(income, incomeDescription) {
+      this.income = income,
+      this.incomeDescription = incomeDescription
+  }
+}
+class PersonAccountForExpense {
+  constructor(expense, expenseDescription) {
+      this.expense = expense,
+      this.expenseDescription = expenseDescription
+  }
+}
+
+
+//Question1
+//Main Account Class
+class PersonAccount {
+  constructor(firstName, lastName, totalIncomes, totalExpenses, accountBalance){
+    this.firstName = firstName,
+    this.lastName = lastName,  
+    this.allIncomes = [],
+    this.allExpenses = [],
+    this.totalIncomes = totalIncomes,
+    this.totalExpenses = totalExpenses,
+    this.accountBalance = accountBalance
+  }
+  AddIncome(income, incomeDescription){
+      let a = new PersonAccountForIncome(income, incomeDescription)
+      this.allIncomes.push(a)
+      return a
+  }
+  AddExpense(expenses, expenseDescription){
+      let b = new PersonAccountForExpense(expenses, expenseDescription)
+      this.allExpenses.push(b)
+      return b
+  }
+  totalIncome(){
+      let totalIncomes = 0;
+      this.allIncomes.forEach(element => {
+          totalIncomes += element["income"]                 
+      });
+      this.totalIncomes = totalIncomes;
+  }
+  totalExpense(){
+      let totalExpenses = 0;
+      this.allExpenses.forEach(element => {
+          totalExpenses += element["expense"]                 
+      });
+      this.totalExpenses = totalExpenses;
+  }
+  accountBalances(){
+      this.accountBalance = this.totalIncomes - this.totalExpenses;
+  }
+}
+//Income Account Class
+class PersonAccountForIncome {
+  constructor(income, incomeDescription) {
+      this.income = income,
+      this.incomeDescription = incomeDescription
+  }
+}
+//Expense Account Class
+class PersonAccountForExpense {
+  constructor(expense, expenseDescription) {
+      this.expense = expense,
+      this.expenseDescription = expenseDescription
+  }
+}
+let newAccount = new PersonAccount("Moin","Uddin");
+newAccount.AddIncome(50000, "This is fifty Thousand Income");
+newAccount.AddIncome(55000, "This is fifty five Thousand Income");
+newAccount.AddExpense(40000, "This is forty Thousand Expense");   
+newAccount.AddExpense(35000, "This is thirty five Thousand Expense");  
+newAccount.totalIncome();
+newAccount.totalExpense();
+newAccount.accountBalances();     
+console.log(newAccount)
